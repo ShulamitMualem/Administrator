@@ -13,12 +13,12 @@ namespace Administrator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("dsf");
             string connectDB = "data source=srv2\\pupils;initial catalog=Web_Api_328264650;Integrated Security=SSPI;Persist Security Info=False;TrustServerCertificate=true";
             Products product = new Products();
-            int rowsEffected= product.AddNewProduct(connectDB);
-            Console.WriteLine("dsf");
+            int rowsEffected = product.AddNewProduct(connectDB);
             Console.WriteLine($"{rowsEffected} rows are affected");
+            product.GetData(connectDB);
+            Console.ReadLine();
         }
     }
 }

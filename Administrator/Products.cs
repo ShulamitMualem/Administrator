@@ -47,5 +47,24 @@ namespace Administrator
             }
             return rowsEffected;
         }
+        public void GetData(string connectionString)
+        {
+            string query = "select p.Name, p.Description, p.Price, p.Image_Url, c.Name as 'caregoryName'\r\nfrom Category c\r\njoin Product p\r\non c.ID=p.Category_ID";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, connection))
+            {
+
+                connection.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                
+                while (reader.Read())
+                {
+                    Console.WriteLine("\t{0}\t{1}\t{2}\t{3}\t{4}", reader[0], reader[1], reader[2], reader[3], reader[4]);
+                }
+                reader.Close();
+                connection.Close();
+            }
+        }
     }
 }
